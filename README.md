@@ -41,3 +41,20 @@ It uses HTTP/2 for transport, Protocol Buffers as the interface description lang
 5. **Client SDK**
 
    If our service is written in Java and the client application is also written in Java then we can share the client libraries but what if there are different clients written in    different languages (C/C++/JavaScript/GoLang etc) ? We simply cannot create client libraries for each one of them.
+
+<br>
+Google identified many such problems in HTTP based inter-service communication, so they developed **Stubby** to solve all such issues.
+
+## Stubby
+* RPC framework from Google
+* 15 years
+* 10 billion requests/sec
+* Cross-platform
+* *Tightly coupled with infrastructure*
+
+## gRPC
+* Developed at Google
+* Inspired by Stubby and addresses its problems
+* Released in 2016
+* Adopted by software giants like Netflix, Microsoft etc
+* Belongs to CNCF ([Cloud Native Computing Foundation](https://www.cncf.io/ "Cloud Native Computing Foundation"))
