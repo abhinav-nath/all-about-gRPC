@@ -1,2 +1,1 @@
-# all-about-gRPC
-Let's explore gRPC !
+# All about gRPC
