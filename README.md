@@ -58,3 +58,9 @@ Google identified many such problems in HTTP based inter-service communication, 
 * Released in 2016
 * Adopted by software giants like Netflix, Microsoft etc
 * Belongs to CNCF ([Cloud Native Computing Foundation](https://www.cncf.io/ "Cloud Native Computing Foundation"))
+
+<br>
+More Details here:
+
+* [HTTP/2.0 vs HTTP/1.1 and gRPC](https://github.com/abhinav-nath/all-about-gRPC/blob/master/notes/http2.0-vs-http1.1.md "HTTP/2.0 vs HTTP/1.1 and gRPC")
+* [Protobuf](https://github.com/abhinav-nath/all-about-gRPC/blob/master/notes/protobuf.md "Protocol Buffers")
