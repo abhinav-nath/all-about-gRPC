@@ -52,3 +52,57 @@ message Person {
   string email = 3;
 }
 ```
+
+<br>
+
+## Proto Scalar Types
+
+<br>
+
+| **Java Type** | **Proto Type** |
+|---------------|----------------|
+| int           | int32          |
+| long          | int64          |
+| float         | float          |
+| double        | double         |
+| boolean       | bool           |
+| String        | string         |
+| byte[]        | bytes          |
+
+<br>
+
+## Protobuf allows Composition
+
+<br>
+
+### car.proto
+
+```
+message Car {
+  string make = 1;
+  string model = 2;
+  int32 year = 3;
+}
+```
+
+### address.proto
+
+```
+message Address {
+  int32 zipCode = 1;
+  string street = 2;
+  string city = 3;
+}
+```
+
+### person.proto
+
+```
+message Person {
+  string name = 1;
+  int32 age = 2;
+  string email = 3;
+  Car car = 4;
+  Address address = 5;
+}
+```
