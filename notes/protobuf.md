@@ -74,6 +74,17 @@ message Person {
 | List          | repeated       |
 | Map           | map            |
 
+### Default Values
+
+| **Proto Type**          | **Default**         |
+|-------------------------|---------------------|
+| int32 / any number type | 0                   |
+| bool                    | false               |
+| string                  | empty string        |
+| enum                    | first value         |
+| repeated                | empty list          |
+| map                     | wrapper / empty map |
+
 <br>
 
 ## Protobuf allows Composition

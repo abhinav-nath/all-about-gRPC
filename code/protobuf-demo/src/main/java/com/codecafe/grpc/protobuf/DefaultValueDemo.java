@@ -8,7 +8,7 @@ public class DefaultValueDemo {
 
         Person person = Person.newBuilder().build();
 
-        // should have thrown NPE
+        // should have thrown NPE, but it won't throw a NPE
         System.out.println("City : " + person.getAddress().getCity());
 
         // There is no null in Protobuf
