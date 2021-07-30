@@ -3,8 +3,22 @@ syntax = "proto3";
 option java_multiple_files = true;
 option java_package = "com.codecafe.grpc.protobuf.model";
 
+message Car {
+  string make = 1;
+  string model = 2;
+  int32 year = 3;
+}
+
+message Address {
+  int32 zipCode = 1;
+  string street = 2;
+  string city = 3;
+}
+
 message Person {
   string name = 1;
   int32 age = 2;
   string email = 3;
+  Address address = 4;
+  Car car = 5;
 }
