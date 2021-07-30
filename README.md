@@ -43,7 +43,7 @@ It uses HTTP/2 for transport, Protocol Buffers as the interface description lang
    If our service is written in Java and the client application is also written in Java then we can share the client libraries but what if there are different clients written in    different languages (C/C++/JavaScript/GoLang etc) ? We simply cannot create client libraries for each one of them.
 
 <br>
-Google identified many such problems in HTTP based inter-service communication, so they developed **Stubby** to solve all such issues.
+Google identified many such problems in HTTP based inter-service communication, so they developed Stubby to solve all such issues.
 
 ## Stubby
 * RPC framework from Google
@@ -64,3 +64,5 @@ More Details here:
 
 * [HTTP/2.0 vs HTTP/1.1 and gRPC](https://github.com/abhinav-nath/all-about-gRPC/blob/master/notes/http2.0-vs-http1.1.md "HTTP/2.0 vs HTTP/1.1 and gRPC")
 * [Protobuf](https://github.com/abhinav-nath/all-about-gRPC/blob/master/notes/protobuf.md "Protocol Buffers")
+  - [Serialization Deserialization](https://github.com/abhinav-nath/all-about-gRPC/tree/master/code/protobuf-demo/src/main/java/com/codecafe/grpc/protobuf/serialization_deserialization "Proto Serialization Deserialization")
+  - [JSON vs Protobuf Serialization/Deserialization Performance Test](https://github.com/abhinav-nath/all-about-gRPC/tree/master/code/protobuf-demo/src/main/java/com/codecafe/grpc/protobuf/json_vs_proto/JsonVsProtoPerformanceTest.java "JSON vs Proto")
