@@ -67,6 +67,13 @@ message Person {
 | String        | string         |
 | byte[]        | bytes          |
 
+### Collections and Map
+
+| **Java Type** | **Proto Type** |
+|---------------|----------------|
+| List          | repeated       |
+| Map           | map            |
+
 <br>
 
 ## Protobuf allows Composition
