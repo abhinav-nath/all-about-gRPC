@@ -14,7 +14,6 @@ public class SerializationDemo {
         Person john = Person.newBuilder()
                 .setName("John Wick")
                 .setAge(42)
-                .setEmail("john.wick@xyz.com")
                 .build();
 
         Path path = Paths.get("john.ser");

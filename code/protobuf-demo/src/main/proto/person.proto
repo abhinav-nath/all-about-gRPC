@@ -1,36 +1,16 @@
 syntax = "proto3";
 
+import "internal/car.proto";
+import "internal/address.proto";
+
 option java_multiple_files = true;
 option java_package = "com.codecafe.grpc.protobuf.model";
-
-// values must start with 0 in enums
-// 0th value is the default value
-enum CarType {
-  UNKNOWN = 0;
-  SPORTS = 1;
-  LUXURY = 2;
-  SEDAN = 3;
-  SUV = 4;
-}
-
-message Car {
-  string make = 1;
-  string model = 2;
-  int32 year = 3;
-  CarType carType = 4;
-}
-
-message Address {
-  int32 zipCode = 1;
-  string street = 2;
-  string city = 3;
-}
 
 message Person {
   string name = 1;
   int32 age = 2;
-  string email = 3;
+  string contact = 3;
   map<string, string> personalIdentification = 4;
-  Address address = 5;
-  repeated Car car = 6;
+  internal.Address address = 5;
+  repeated internal.Car car = 6;
 }

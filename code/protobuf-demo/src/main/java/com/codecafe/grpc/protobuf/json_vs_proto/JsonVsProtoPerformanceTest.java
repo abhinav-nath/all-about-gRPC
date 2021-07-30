@@ -56,7 +56,6 @@ public class JsonVsProtoPerformanceTest {
         Person personP = Person.newBuilder()
                 .setName("tom")
                 .setAge(28)
-                .setEmail("abc@xyz.com")
                 .build();
 
         Runnable protoSerializeDeserialize = () -> {

@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+package internal;
+
+option java_multiple_files = true;
+option java_package = "com.codecafe.grpc.protobuf.model";
+
+message EmailCredentials {
+  string email = 1;
+  string password = 2;
+}
+
+message PhoneOTP {
+  int32 phoneNumber = 1;
+  int32 code = 2;
+}
+
+message Credentials {
+  oneof credentials {
+    EmailCredentials emailCredentials = 1;
+    PhoneOTP phoneOTP = 2;
+  }
+}

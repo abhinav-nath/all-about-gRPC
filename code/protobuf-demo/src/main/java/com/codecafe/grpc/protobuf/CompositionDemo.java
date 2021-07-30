@@ -43,7 +43,6 @@ public class CompositionDemo {
         Person tony = Person.newBuilder()
                 .setName("Tony Stark")
                 .setAge(42)
-                .setEmail("tony.stark@xyz.com")
                 .putAllPersonalIdentification(identityMap)
                 .setAddress(address)
                 .addAllCar(cars)

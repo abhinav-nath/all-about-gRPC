@@ -12,7 +12,6 @@ public class PersonProtoDemo {
         Person john = Person.newBuilder()
                 .setName("John Wick")
                 .setAge(42)
-                .setEmail("john.wick@xyz.com")
                 .build();
 
         System.out.println(john);
