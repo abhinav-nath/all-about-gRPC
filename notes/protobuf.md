@@ -57,8 +57,6 @@ message Person {
 
 ## Proto Scalar Types
 
-<br>
-
 | **Java Type** | **Proto Type** |
 |---------------|----------------|
 | int           | int32          |
@@ -72,8 +70,6 @@ message Person {
 <br>
 
 ## Protobuf allows Composition
-
-<br>
 
 ### car.proto
 
