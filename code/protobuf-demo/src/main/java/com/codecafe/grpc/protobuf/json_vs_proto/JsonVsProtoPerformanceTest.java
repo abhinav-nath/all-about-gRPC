@@ -6,6 +6,28 @@ import com.google.protobuf.InvalidProtocolBufferException;
 
 // Comparison of JSON and Protobuf Serialization/Deserialization performance
 
+/*
+    Pass #1
+    method jsonSerializeDeserialize took 2905 ms
+    method protoSerializeDeserialize took 701 ms
+
+    Pass #2
+    method jsonSerializeDeserialize took 2306 ms
+    method protoSerializeDeserialize took 687 ms
+
+    Pass #3
+    method jsonSerializeDeserialize took 2306 ms
+    method protoSerializeDeserialize took 705 ms
+
+    Pass #4
+    method jsonSerializeDeserialize took 2318 ms
+    method protoSerializeDeserialize took 713 ms
+
+    Pass #5
+    method jsonSerializeDeserialize took 2315 ms
+    method protoSerializeDeserialize took 688 ms
+ */
+
 public class JsonVsProtoPerformanceTest {
 
     public static void main(String[] args) {
