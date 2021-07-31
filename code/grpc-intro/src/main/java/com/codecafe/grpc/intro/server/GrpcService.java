@@ -17,7 +17,6 @@ public class GrpcService {
         server.start();
 
         server.awaitTermination();
-
     }
 
 }

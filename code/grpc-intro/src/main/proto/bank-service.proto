@@ -16,4 +16,10 @@ service BankService {
   // of $10 each per second
   rpc withdraw(WithdrawRequest) returns(stream WithdrawResponse);
 
+  // Client-streaming RPC
+  // assumption - client has a lot of money
+  // use case - client deposits lots of money in batches and only once all deposits are done
+  // then only server should respond back to the client with the updated balance
+  rpc deposit(stream DepositRequest) returns(DepositResponse);
+
 }

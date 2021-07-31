@@ -19,3 +19,12 @@ message WithdrawRequest {
 message WithdrawResponse {
   int32 amount = 1;
 }
+
+message DepositRequest {
+  int32 accountNumber = 1;
+  int32 amount = 2;
+}
+
+message DepositResponse {
+  int32 balance = 1;
+}

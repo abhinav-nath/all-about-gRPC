@@ -1,10 +1,8 @@
 package com.codecafe.grpc.intro.service;
 
-import com.codecafe.grpc.intro.model.Balance;
-import com.codecafe.grpc.intro.model.BalanceCheckRequest;
-import com.codecafe.grpc.intro.model.WithdrawRequest;
-import com.codecafe.grpc.intro.model.WithdrawResponse;
+import com.codecafe.grpc.intro.model.*;
 import com.codecafe.grpc.intro.persistence.AccountDatabase;
+import com.codecafe.grpc.intro.server.DepositStreamingRequest;
 import io.grpc.Status;
 import io.grpc.stub.StreamObserver;
 
@@ -54,6 +52,11 @@ public class BankService extends BankServiceGrpc.BankServiceImplBase {
         }
 
         responseObserver.onCompleted();
+    }
+
+    @Override
+    public StreamObserver<DepositRequest> deposit(StreamObserver<DepositResponse> responseObserver) {
+        return new DepositStreamingRequest(responseObserver);
     }
 
 }
