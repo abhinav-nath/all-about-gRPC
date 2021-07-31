@@ -8,24 +8,24 @@ import com.google.protobuf.InvalidProtocolBufferException;
 
 /*
     Pass #1
-    method jsonSerializeDeserialize took 2905 ms
-    method protoSerializeDeserialize took 701 ms
+    method jsonSerializeDeserialize took 2857 ms
+    method protoSerializeDeserialize took 596 ms
 
     Pass #2
-    method jsonSerializeDeserialize took 2306 ms
-    method protoSerializeDeserialize took 687 ms
+    method jsonSerializeDeserialize took 2252 ms
+    method protoSerializeDeserialize took 546 ms
 
     Pass #3
-    method jsonSerializeDeserialize took 2306 ms
-    method protoSerializeDeserialize took 705 ms
+    method jsonSerializeDeserialize took 2265 ms
+    method protoSerializeDeserialize took 549 ms
 
     Pass #4
-    method jsonSerializeDeserialize took 2318 ms
-    method protoSerializeDeserialize took 713 ms
+    method jsonSerializeDeserialize took 2260 ms
+    method protoSerializeDeserialize took 538 ms
 
     Pass #5
-    method jsonSerializeDeserialize took 2315 ms
-    method protoSerializeDeserialize took 688 ms
+    method jsonSerializeDeserialize took 2289 ms
+    method protoSerializeDeserialize took 532 ms
  */
 
 public class JsonVsProtoPerformanceTest {
@@ -35,7 +35,6 @@ public class JsonVsProtoPerformanceTest {
         JPerson personJ = new JPerson();
         personJ.setName("tom");
         personJ.setAge(28);
-        personJ.setEmail("abc@xyz.com");
 
         ObjectMapper mapper = new ObjectMapper();
 
