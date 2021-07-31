@@ -4,16 +4,20 @@ import com.codecafe.grpc.intro.model.Balance;
 import com.codecafe.grpc.intro.model.BalanceCheckRequest;
 import com.codecafe.grpc.intro.model.WithdrawRequest;
 import com.codecafe.grpc.intro.service.BankServiceGrpc;
+import com.google.common.util.concurrent.Uninterruptibles;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 
+import java.util.concurrent.TimeUnit;
+
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class BankClientTest {
 
     BankServiceGrpc.BankServiceBlockingStub blockingStub;
+    BankServiceGrpc.BankServiceStub bankServiceStub;
 
     @BeforeAll
     public void setup() {
@@ -22,14 +26,20 @@ public class BankClientTest {
                 .usePlaintext()
                 .build();
 
+        // Sync
         this.blockingStub = BankServiceGrpc.newBlockingStub(managedChannel);
+
+        // Async
+        this.bankServiceStub = BankServiceGrpc.newStub(managedChannel);
     }
 
     @Test
     public void getBalanceTest() {
 
+        int accountNumber = 5;
+
         BalanceCheckRequest balanceCheckRequest = BalanceCheckRequest.newBuilder()
-                .setAccountNumber(7)
+                .setAccountNumber(accountNumber)
                 .build();
 
         Balance balance = this.blockingStub.getBalance(balanceCheckRequest);
@@ -42,7 +52,7 @@ public class BankClientTest {
     public void withdrawTest() {
 
         int accountNumber = 5;
-        int amountToWithdraw = 505;
+        int amountToWithdraw = 40;
 
         BalanceCheckRequest balanceCheckRequest = BalanceCheckRequest.newBuilder()
                 .setAccountNumber(accountNumber)
@@ -70,6 +80,22 @@ public class BankClientTest {
 
         System.out.println("Final balance : $" + balance.getAmount());
 
+    }
+
+    @Test
+    public void withdrawAsyncTest() {
+
+        int accountNumber = 5;
+        int amountToWithdraw = 40;
+
+        WithdrawRequest withdrawRequest = WithdrawRequest.newBuilder()
+                .setAccountNumber(accountNumber)
+                .setAmount(amountToWithdraw)
+                .build();
+
+        this.bankServiceStub.withdraw(withdrawRequest, new WithdrawStreamingResponse());
+
+        Uninterruptibles.sleepUninterruptibly(6, TimeUnit.SECONDS);
     }
 
 }
