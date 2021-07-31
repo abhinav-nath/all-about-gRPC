@@ -12,10 +12,10 @@ public class Deserialize {
 
     public static void main(String[] args) throws IOException {
 
-        Path pathV1 = Paths.get("tv-v1");
-        Path pathV2 = Paths.get("tv-v2");
-        Path pathV3 = Paths.get("tv-v3");
-        Path pathV4 = Paths.get("tv-v4");
+        Path pathV1 = Paths.get("src/main/java/com/codecafe/grpc/protobuf/versioning/tv-v1");
+        Path pathV2 = Paths.get("src/main/java/com/codecafe/grpc/protobuf/versioning/tv-v2");
+        Path pathV3 = Paths.get("src/main/java/com/codecafe/grpc/protobuf/versioning/tv-v3");
+        Path pathV4 = Paths.get("src/main/java/com/codecafe/grpc/protobuf/versioning/tv-v4");
 
         // de-serialize
 
