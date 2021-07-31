@@ -27,3 +27,10 @@
    ```
    rpc BidiHello(stream HelloRequest) returns (stream HelloResponse);
    ```
+
+## bloomRPC - Postman like GUI client
+
+Download bloomRPC from [here](https://github.com/uw-labs/bloomrpc/releases "Download bloomRPC")
+
+![bloomRPC](./bloomRPC.png)
+
