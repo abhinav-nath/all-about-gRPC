@@ -5,6 +5,7 @@ import com.codecafe.grpc.intro.model.BalanceCheckRequest;
 import com.codecafe.grpc.intro.model.WithdrawRequest;
 import com.codecafe.grpc.intro.model.WithdrawResponse;
 import com.codecafe.grpc.intro.persistence.AccountDatabase;
+import io.grpc.Status;
 import io.grpc.stub.StreamObserver;
 
 public class BankService extends BankServiceGrpc.BankServiceImplBase {
@@ -28,6 +29,13 @@ public class BankService extends BankServiceGrpc.BankServiceImplBase {
         int amountToWithdraw = request.getAmount();
 
         int balance = AccountDatabase.getBalance(accountNumber);
+
+        // validations
+        if (balance < amountToWithdraw) {
+            Status status = Status.FAILED_PRECONDITION.withDescription("Not enough balance. You have only $" + balance);
+            responseObserver.onError(status.asRuntimeException());
+            return;
+        }
 
         for (int i = 0; i < (amountToWithdraw / 10); i++) {
             WithdrawResponse response = WithdrawResponse.newBuilder()
