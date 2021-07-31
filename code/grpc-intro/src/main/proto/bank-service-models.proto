@@ -3,12 +3,19 @@ syntax = "proto3";
 option java_multiple_files = true;
 option java_package = "com.codecafe.grpc.intro.model";
 
-// request
 message BalanceCheckRequest {
   int32 account_number = 1;
 }
 
-// response
 message Balance {
+  int32 amount = 1;
+}
+
+message WithdrawRequest {
+  int32 accountNumber = 1;
+  int32 amount = 2;
+}
+
+message WithdrawResponse {
   int32 amount = 1;
 }
