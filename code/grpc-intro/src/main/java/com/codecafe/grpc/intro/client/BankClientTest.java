@@ -4,13 +4,14 @@ import com.codecafe.grpc.intro.model.Balance;
 import com.codecafe.grpc.intro.model.BalanceCheckRequest;
 import com.codecafe.grpc.intro.model.WithdrawRequest;
 import com.codecafe.grpc.intro.service.BankServiceGrpc;
-import com.google.common.util.concurrent.Uninterruptibles;
+// import com.google.common.util.concurrent.Uninterruptibles;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 
+import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
@@ -83,7 +84,9 @@ public class BankClientTest {
     }
 
     @Test
-    public void withdrawAsyncTest() {
+    public void withdrawAsyncTest() throws InterruptedException {
+
+        CountDownLatch latch = new CountDownLatch(1);
 
         int accountNumber = 5;
         int amountToWithdraw = 40;
@@ -93,9 +96,11 @@ public class BankClientTest {
                 .setAmount(amountToWithdraw)
                 .build();
 
-        this.bankServiceStub.withdraw(withdrawRequest, new WithdrawStreamingResponse());
+        // Uninterruptibles.sleepUninterruptibly(6, TimeUnit.SECONDS);
 
-        Uninterruptibles.sleepUninterruptibly(6, TimeUnit.SECONDS);
+        // better way to wait using CountDownLatch
+        this.bankServiceStub.withdraw(withdrawRequest, new WithdrawStreamingResponse(latch));
+        latch.await();
     }
 
 }
