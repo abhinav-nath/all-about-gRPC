@@ -1,0 +1,74 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "com.codecafe.grpc.protobuf.model";
+
+// v1
+/*
+message Television {
+  string brand = 1;
+  int32 year = 2;
+}
+*/
+
+// v2 - renamed year to model and added type enum
+/*
+message Television {
+  string brand = 1;
+  int32 model = 2;
+  TvType type = 3;
+}
+
+enum TvType {
+  HD = 0;
+  UHD = 1;
+  OLED = 2;
+}
+*/
+
+// v3 - removed model field
+/*
+message Television {
+  string brand = 1;
+  TvType type = 3;
+}
+
+enum TvType {
+  HD = 0;
+  UHD = 1;
+  OLED = 2;
+}
+*/
+
+// v4 - some developer added price field in the field number 2
+/*
+message Television {
+  string brand = 1;
+  int32 price = 2; // this will break clients who are still consuming v3
+  TvType type = 3;
+}
+
+enum TvType {
+  HD = 0;
+  UHD = 1;
+  OLED = 2;
+}
+*/
+
+// correct way of deprecating a field
+
+message Television {
+  string brand = 1;
+
+  reserved 2; // will not let the developer use field number 2
+  reserved "year", "model"; // will not let the developer use fields year and model
+
+  TvType type = 3;
+  int32 price = 4;
+}
+
+enum TvType {
+  HD = 0;
+  UHD = 1;
+  OLED = 2;
+}
