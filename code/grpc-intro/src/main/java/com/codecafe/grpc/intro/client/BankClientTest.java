@@ -2,6 +2,7 @@ package com.codecafe.grpc.intro.client;
 
 import com.codecafe.grpc.intro.model.Balance;
 import com.codecafe.grpc.intro.model.BalanceCheckRequest;
+import com.codecafe.grpc.intro.model.WithdrawRequest;
 import com.codecafe.grpc.intro.service.BankServiceGrpc;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
@@ -34,6 +35,40 @@ public class BankClientTest {
         Balance balance = this.blockingStub.getBalance(balanceCheckRequest);
 
         System.out.println("Received : " + balance.getAmount());
+
+    }
+
+    @Test
+    public void withdrawTest() {
+
+        int accountNumber = 5;
+        int amountToWithdraw = 505;
+
+        BalanceCheckRequest balanceCheckRequest = BalanceCheckRequest.newBuilder()
+                .setAccountNumber(accountNumber)
+                .build();
+
+        Balance balance = this.blockingStub.getBalance(balanceCheckRequest);
+
+        System.out.println("Current balance : $" + balance.getAmount());
+
+        System.out.println("Withdrawing $" + amountToWithdraw);
+
+        WithdrawRequest withdrawRequest = WithdrawRequest.newBuilder()
+                .setAccountNumber(accountNumber)
+                .setAmount(amountToWithdraw)
+                .build();
+
+        this.blockingStub.withdraw(withdrawRequest)
+                .forEachRemaining(response -> System.out.println("Received : $" + response.getAmount()));
+
+        balanceCheckRequest = BalanceCheckRequest.newBuilder()
+                .setAccountNumber(accountNumber)
+                .build();
+
+        balance = this.blockingStub.getBalance(balanceCheckRequest);
+
+        System.out.println("Final balance : $" + balance.getAmount());
 
     }
 
