@@ -85,7 +85,31 @@ message Person {
 | repeated                | empty list          |
 | map                     | wrapper / empty map |
 
-<br>
+### Wrapper Types
+
+Like Java, there are [Wrapper types](https://developers.google.com/protocol-buffers/docs/reference/google.protobuf "Wrapper Types") in protobuf as well.
+
+To use them, we just need to import `wrappers.proto` in our proto file.
+
+`import google/protobuf/wrappers.proto`
+
+and we can use them like this:
+
+```
+message Person {
+    string name = 1;
+    google.protobuf.Int32Value age = 2;
+}
+```
+
+`int32` : `Int32Value`
+
+`float` : `FloatValue`
+
+`bool` : `BoolValue`
+
+and many more ...
+
 
 ## Protobuf allows Composition
 
