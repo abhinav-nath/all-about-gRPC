@@ -48,7 +48,7 @@ public class DieStreamObserver implements StreamObserver<Die> {
         int position = player.getPosition() + dieValue;
 
         // get new position if a ladder or snake is encountered
-        position = SnakesAndLaddersMap.getNewPosition(position);
+        position = SnakesAndLaddersMap.getNewPosition(player.getName(), position);
 
         if (position <= 100) {
             player = player.toBuilder()
