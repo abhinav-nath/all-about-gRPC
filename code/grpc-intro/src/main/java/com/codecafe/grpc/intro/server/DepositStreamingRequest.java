@@ -23,7 +23,7 @@ public class DepositStreamingRequest implements StreamObserver<DepositRequest> {
 
     @Override
     public void onError(Throwable throwable) {
-
+        System.out.println(throwable.getMessage());
     }
 
     @Override

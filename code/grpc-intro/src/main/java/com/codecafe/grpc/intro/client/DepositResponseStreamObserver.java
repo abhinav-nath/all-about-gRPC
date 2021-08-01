@@ -15,7 +15,6 @@ public class DepositResponseStreamObserver implements StreamObserver<DepositResp
 
     @Override
     public void onNext(DepositResponse depositResponse) {
-        System.out.println("hello");
         System.out.println("Final balance : $" + depositResponse.getBalance());
     }
 

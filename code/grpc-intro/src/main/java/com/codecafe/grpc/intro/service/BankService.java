@@ -8,6 +8,7 @@ import io.grpc.stub.StreamObserver;
 
 public class BankService extends BankServiceGrpc.BankServiceImplBase {
 
+    // Unary RPC
     @Override
     public void getBalance(BalanceCheckRequest request, StreamObserver<Balance> responseObserver) {
 
@@ -21,8 +22,9 @@ public class BankService extends BankServiceGrpc.BankServiceImplBase {
         responseObserver.onCompleted();
     }
 
+    // Server streaming RPC
     @Override
-    public void withdraw(WithdrawRequest request, StreamObserver<WithdrawResponse> responseObserver) {
+    public void withdraw(WithdrawRequest request, StreamObserver<WithdrawResponse> withdrawResponseStreamObserver) {
         int accountNumber = request.getAccountNumber();
         int amountToWithdraw = request.getAmount();
 
@@ -31,7 +33,7 @@ public class BankService extends BankServiceGrpc.BankServiceImplBase {
         // validations
         if (balance < amountToWithdraw) {
             Status status = Status.FAILED_PRECONDITION.withDescription("Not enough balance. You have only $" + balance);
-            responseObserver.onError(status.asRuntimeException());
+            withdrawResponseStreamObserver.onError(status.asRuntimeException());
             return;
         }
 
@@ -39,7 +41,7 @@ public class BankService extends BankServiceGrpc.BankServiceImplBase {
             WithdrawResponse response = WithdrawResponse.newBuilder()
                     .setAmount(10)
                     .build();
-            responseObserver.onNext(response);
+            withdrawResponseStreamObserver.onNext(response);
 
             AccountDatabase.deductBalance(accountNumber, 10);
 
@@ -51,9 +53,10 @@ public class BankService extends BankServiceGrpc.BankServiceImplBase {
             }
         }
 
-        responseObserver.onCompleted();
+        withdrawResponseStreamObserver.onCompleted();
     }
 
+    // Client Streaming RPC
     @Override
     public StreamObserver<DepositRequest> deposit(StreamObserver<DepositResponse> depositResponseStreamObserver) {
         return new DepositStreamingRequest(depositResponseStreamObserver);

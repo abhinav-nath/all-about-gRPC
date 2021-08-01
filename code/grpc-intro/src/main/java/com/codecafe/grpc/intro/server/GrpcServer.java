@@ -1,6 +1,7 @@
 package com.codecafe.grpc.intro.server;
 
 import com.codecafe.grpc.intro.service.BankService;
+import com.codecafe.grpc.intro.service.TransferService;
 import io.grpc.Server;
 import io.grpc.ServerBuilder;
 
@@ -12,6 +13,7 @@ public class GrpcServer {
 
         Server server = ServerBuilder.forPort(8181)
                 .addService(new BankService())
+                .addService(new TransferService())
                 .build();
 
         server.start();
