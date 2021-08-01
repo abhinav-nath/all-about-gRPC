@@ -55,8 +55,8 @@ public class BankService extends BankServiceGrpc.BankServiceImplBase {
     }
 
     @Override
-    public StreamObserver<DepositRequest> deposit(StreamObserver<DepositResponse> responseObserver) {
-        return new DepositStreamingRequest(responseObserver);
+    public StreamObserver<DepositRequest> deposit(StreamObserver<DepositResponse> depositResponseStreamObserver) {
+        return new DepositStreamingRequest(depositResponseStreamObserver);
     }
 
 }

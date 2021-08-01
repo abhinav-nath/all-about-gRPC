@@ -2,11 +2,13 @@ package com.codecafe.grpc.intro.client;
 
 import com.codecafe.grpc.intro.model.Balance;
 import com.codecafe.grpc.intro.model.BalanceCheckRequest;
+import com.codecafe.grpc.intro.model.DepositRequest;
 import com.codecafe.grpc.intro.model.WithdrawRequest;
 import com.codecafe.grpc.intro.service.BankServiceGrpc;
 // import com.google.common.util.concurrent.Uninterruptibles;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
+import io.grpc.stub.StreamObserver;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
@@ -100,6 +102,25 @@ public class BankClientTest {
 
         // better way to wait using CountDownLatch
         this.bankServiceStub.withdraw(withdrawRequest, new WithdrawStreamingResponse(latch));
+        latch.await();
+    }
+
+    @Test
+    public void depositStreamingTest() throws InterruptedException {
+
+        CountDownLatch latch = new CountDownLatch(1);
+
+        StreamObserver<DepositRequest> depositRequestStreamObserver = this.bankServiceStub.deposit(new DepositResponseStreamObserver(latch));
+
+        for (int i = 0; i < 10; i++) {
+            DepositRequest depositRequest = DepositRequest.newBuilder()
+                    .setAccountNumber(5)
+                    .setAmount(10)
+                    .build();
+            depositRequestStreamObserver.onNext(depositRequest);
+        }
+
+        depositRequestStreamObserver.onCompleted();
         latch.await();
     }
 
