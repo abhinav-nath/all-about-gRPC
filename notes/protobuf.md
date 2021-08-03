@@ -26,7 +26,7 @@ public class Person {
 
 Then this is how its Protobuf (proto2) looks like:
 
-```java
+```protobuf
 message Person {
     required string name = 1;  // 1 is tag, can be any number
     required int32 id = 2;
@@ -40,7 +40,7 @@ So in proto3 all fields are optional by default.
 
 ### person.proto
 
-```java
+```protobuf
 syntax = "proto3";
 
 option java_multiple_files = true;
@@ -95,7 +95,7 @@ To use them, we just need to import `wrappers.proto` in our proto file.
 
 and we can use them like this:
 
-```java
+```protobuf
 message Person {
     string name = 1;
     google.protobuf.Int32Value age = 2;
@@ -115,7 +115,7 @@ and many more ...
 
 ### car.proto
 
-```java
+```protobuf
 message Car {
   string make = 1;
   string model = 2;
@@ -125,7 +125,7 @@ message Car {
 
 ### address.proto
 
-```java
+```protobuf
 message Address {
   int32 zipCode = 1;
   string street = 2;
@@ -135,7 +135,7 @@ message Address {
 
 ### person.proto
 
-```java
+```protobuf
 message Person {
   string name = 1;
   int32 age = 2;
@@ -157,7 +157,7 @@ So the String keys also get serialized and deserialized along with the values.
 
 But, in Protobuf, we define a `tag` or `field number` for each field:
 
-```java
+```protobuf
 message Person {
   string name = 1;
   int32 age = 2;
